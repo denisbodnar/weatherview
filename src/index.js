@@ -9,15 +9,16 @@ class WeatherPage extends React.Component {
         this.state = {
             temp: null,
             condition: null,
-            city: null
+            city: null,
+            error: null
         }
     }
 
-    getWeather() {
-        axios
-            .get(`localhost:3000/${this.state.city}`)
-            .then(res => this.setState({temp: res.main.temp, condition: res.weather[0].main}))
-            .catch(err => console.log("Something went wrong"));
+    getWeather = () => {
+        return axios
+          .get(`http://127.0.0.1:3000/${this.state.city}`)
+          .then(res => !!res.data && this.setState({temp: res.data.main.temp, condition: res.data.weather[0].main}))
+          .catch(err => this.setState({error: "City is not valid"}));
     }
 
     handleCity = e => {
@@ -26,9 +27,10 @@ class WeatherPage extends React.Component {
 
     render() {
         return <div>
-            <h1>Hello! &#128640;</h1>
-            <input type="text" placeholder="Enter your city" onChange={this.handleCity}/>
-            <h2>{this.state.city}</h2>
+            <h1>Hello!</h1>
+            <input type="text" placeholder="Enter anything" onChange={this.handleCity} />
+            <button onClick={this.getWeather}>Show me weather!</button>
+            {this.state.temp && <h2>Its {this.state.condition} and temperature is {this.state.temp}</h2> || <h2>{this.state.error}</h2>}
           </div>;
     }
 }

@@ -25,7 +25,6 @@ class WeatherPage extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return <div>
             <h1>Hello! &#128640;</h1>
             <input type="text" placeholder="Enter your city" onChange={this.handleCity}/>

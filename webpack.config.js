@@ -8,7 +8,7 @@ module.exports = {
   entry: `${APP_DIR}/index.js`,
   output: {
     path: BUILD_DIR,
-    publicPath: '/',
+    publicPath: "/",
     filename: "bundle.js"
   },
   module: {
@@ -17,8 +17,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
-          }
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [ "style-loader", "css-loader"]
       }
     ]
   }

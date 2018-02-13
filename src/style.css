@@ -2,20 +2,33 @@
 
 .container {
     width: 80%;
-    margin: 20vh auto;
-    font-size: 60px;
+    margin: 19vh auto 0 auto;
+    font-size: 30px;
     color: rgb(154, 154, 160);
     font-family: 'Josefin Sans', 'Arial', sans-serif;
     text-align: center;
 }
 
+body {
+    background: linear-gradient(180deg, lightblue, white);
+    height: 80vh;
+}
+
 .city-input {
-    padding: 5px;
+    margin: auto;
+    display: block;
+    padding: 15px;
+    color: dodgerblue;
     font-family: 'Josefin Sans', 'Arial', sans-serif;
     font-size: 20px;
     width: 300px;
-    height: 50px;
+    height: 30px;
     border-radius: 10px;
-    border: 1px black;
-    box-shadow: 10px;
+    border: none;
+    box-shadow: 0 10px 30px -10px gray;
+}
+
+.city-input:focus {
+    outline: none;
+    box-shadow: 0 10px 30px 0px gray;
 }

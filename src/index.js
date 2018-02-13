@@ -15,19 +15,31 @@ const conditions = {
 };
 
 class WeatherPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             temp: null,
             condition: null,
             city: null,
-            error: null
+            error: null,
+            lat: null,
+            long: null
         }
     }
 
-    getWeather = () => {
-        return axios
+    componentWillMount() {
+        navigator.geolocation.getCurrentPosition(pos =>
+          this.setState({
+            lat: Math.floor(pos.coords.latitude),
+            long: Math.floor(pos.coords.longitude)
+          })
+        );
+    }
+
+    getWeather = e => {
+        e.preventDefault();
+        axios
           .get(`http://127.0.0.1:3000/${this.state.city}`)
           .then(res => !!res.data && this.setState({
                 temp: res.data.main.temp,
@@ -42,11 +54,21 @@ class WeatherPage extends React.Component {
     }
 
     render() {
+        console.log(this.state);
+        this.state.lat && axios
+          .get(`http://127.0.0.1:3000/${this.state.lat}/${this.state.long}`)
+          .then(res => !!res.data && this.setState({
+                temp: res.data.main.temp,
+                condition: res.data.weather[0].main,
+                error: null
+              }))
+          .catch(err => this.setState({ error: "Ooops 🤷" }));
         return <div className="container">
             <h1>Weather</h1>
-            <input className="city-input" type="text" placeholder="Enter anything" onChange={this.handleCity} />
-            <button onClick={this.getWeather}>Show me weather!</button>
-            {(!this.state.error && this.state.condition && <h2> Its {conditions[this.state.condition]} and temperature is {this.state.temp}</h2>) || <h2>{this.state.error}</h2>}
+            <form onSubmit={this.getWeather}>
+               <input className="city-input" type="text" placeholder="Enter your city" onChange={this.handleCity}/>
+            </form>
+            {(!this.state.error && this.state.condition && <h2> Its {conditions[this.state.condition]} and {Math.floor(this.state.temp)}</h2>) || <h2>{this.state.error}</h2>}
           </div>;
     }
 }

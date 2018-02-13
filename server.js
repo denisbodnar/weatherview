@@ -12,6 +12,13 @@ app.get("/:city", (req, res) => {
       .catch(err => res.send("Error!"));
 });
 
+app.get("/:lat/:lon", (req, res) => {
+    axios
+      .get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.params.lat}&lon=${req.params.lon}&units=metric&appID=a7985e3a1ae3c390540fde0efe3acd62`)
+      .then(result => res.send(result.data))
+      .catch(err => res.send("Error!"));
+});
+
 app.get("/", (req, res) => res.send("Hello!\u26A1"));
 
 app.listen(3000, () =>

@@ -23,32 +23,43 @@
 
 h1 {
     font-family: 'Concert One', cursive;
-    text-shadow: 0 10px 30px lightgrey
+    text-shadow: 0 10px 30px lightblue;
+    color: white;
+}
+
+h2 {
+    font-size: 80px;
+    font-family: 'Concert One', cursive;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Montserrat', 'Arial', sans-serif;
 }
 
 .container {
-    border: 5px solid;
-    border-image: linear-gradient(180deg, orange, lightblue) 20;
+    border: 15px solid;
+    border-image: linear-gradient(180deg, lightyellow, lightblue) 20;
     padding: 20px;
     width: 700px;
-    margin: 19vh auto 0 auto;
+    margin: 10vh auto;
     font-size: 30px;
-    color: white;
+    color: darkgrey;
     font-family: 'Montserrat', 'Arial', sans-serif;
     text-align: center;
+    min-height: 70vh;
 }
 
 body {
     background: linear-gradient(180deg, lightblue, white);
     background-attachment: fixed;
-    height: 80vh;
 }
 
 .city-input {
-    margin: auto;
+    margin: 40px auto;
     display: block;
     padding: 15px;
-    color: dodgerblue;
+    color: gray;
     font-family: 'Montserrat', 'Arial', sans-serif;
     font-size: 20px;
     width: 400px;
@@ -66,4 +77,11 @@ body {
     animation-duration: 0.3s;
     box-shadow: 0 10px 30px 0px gray;
     height: 50px;
-}   
+}
+
+.daily {
+    width: 300px;
+    border: 1px solid white;
+    padding: 10px;
+    margin: 10px auto;
+}

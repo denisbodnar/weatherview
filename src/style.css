@@ -1,7 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700');
 
+@keyframes slide {
+    from {
+        height: 30px;
+    }
+
+    to {
+        height: 50px;
+    }
+}
+
 .container {
-    width: 80%;
+    width: 700px;
     margin: 19vh auto 0 auto;
     font-size: 30px;
     color: rgb(154, 154, 160);
@@ -11,6 +21,7 @@
 
 body {
     background: linear-gradient(180deg, lightblue, white);
+    background-attachment: fixed;
     height: 80vh;
 }
 
@@ -21,7 +32,7 @@ body {
     color: dodgerblue;
     font-family: 'Josefin Sans', 'Arial', sans-serif;
     font-size: 20px;
-    width: 300px;
+    width: 400px;
     height: 30px;
     border-radius: 10px;
     border: none;
@@ -30,5 +41,8 @@ body {
 
 .city-input:focus {
     outline: none;
+    animation-name: slide;
+    animation-duration: 0.3s;
     box-shadow: 0 10px 30px 0px gray;
-}
+    height: 50px;
+}   

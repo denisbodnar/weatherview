@@ -7,16 +7,24 @@ app.use(cors());
 
 app.get("/:city", (req, res) => {
     axios
-      .get(`http://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&units=metric&appID=a7985e3a1ae3c390540fde0efe3acd62`)
-      .then(result => res.send(result.data))
-      .catch(err => res.send("Error!"));
+      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${req.params.city}&units=metric&appID=a7985e3a1ae3c390540fde0efe3acd62`)
+      .then(result => res.json(result.data.list.map(entry => {
+        return {
+          date: entry.dt,
+          temp: entry.main.temp,
+          condition: entry.weather[0].main,
+          description: entry.weather[0].description,
+          dateText: entry.dt_txt 
+        }
+      })))
+      .catch(err => res.json({error: "Oops! Nothing found!"}));
 });
 
 app.get("/:lat/:lon", (req, res) => {
     axios
       .get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.params.lat}&lon=${req.params.lon}&units=metric&appID=a7985e3a1ae3c390540fde0efe3acd62`)
       .then(result => res.send(result.data))
-      .catch(err => res.send("Error!"));
+      .catch(err => res.json({error: "Error!"}));
 });
 
 app.get("/", (req, res) => res.send("Hello!\u26A1"));

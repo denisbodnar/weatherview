@@ -19,8 +19,7 @@ class WeatherPage extends React.Component {
         super(props);
 
         this.state = {
-            temp: null,
-            condition: null,
+            data: null,
             city: null,
             error: null,
             lat: null,
@@ -41,12 +40,7 @@ class WeatherPage extends React.Component {
         e.preventDefault();
         axios
           .get(`http://127.0.0.1:3000/${this.state.city}`)
-          .then(res => !!res.data && this.setState({
-                temp: res.data.main.temp,
-                condition: res.data.weather[0].main,
-                error: null
-              }))
-          .catch(err => this.setState({ error: "Ooops 🤷" }));
+          .then(res => !!res.data && this.setState({data: res.data, error: res.data.error}))
     }
 
     handleCity = e => {
@@ -55,20 +49,12 @@ class WeatherPage extends React.Component {
 
     render() {
         console.log(this.state);
-        this.state.lat && axios
-          .get(`http://127.0.0.1:3000/${this.state.lat}/${this.state.long}`)
-          .then(res => !!res.data && this.setState({
-                temp: res.data.main.temp,
-                condition: res.data.weather[0].main,
-                error: null
-              }))
-          .catch(err => this.setState({ error: "Ooops 🤷" }));
         return <div className="container">
             <h1>Weather</h1>
             <form onSubmit={this.getWeather}>
                <input className="city-input" type="text" placeholder="Enter your city" onChange={this.handleCity}/>
             </form>
-            {(!this.state.error && this.state.condition && <h2> Its {conditions[this.state.condition]} and {Math.floor(this.state.temp)}</h2>) || <h2>{this.state.error}</h2>}
+            {!this.state.error && this.state.data && this.state.data.map(entry => <p key={entry.date}>{entry.dateText}: {Math.floor(entry.temp)}, {conditions[entry.condition]} - {entry.description}</p>) || <p>{this.state.error}</p>}
           </div>;
     }
 }

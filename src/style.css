@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Concert+One');
 
 @keyframes slide {
     from {
@@ -10,12 +11,30 @@
     }
 }
 
+@keyframes slidein {
+    from {
+        height: 50px;
+    }
+
+    to {
+        height: 30px;
+    }
+}
+
+h1 {
+    font-family: 'Concert One', cursive;
+    text-shadow: 0 10px 30px lightgrey
+}
+
 .container {
+    border: 5px solid;
+    border-image: linear-gradient(180deg, orange, lightblue) 20;
+    padding: 20px;
     width: 700px;
     margin: 19vh auto 0 auto;
     font-size: 30px;
-    color: rgb(154, 154, 160);
-    font-family: 'Josefin Sans', 'Arial', sans-serif;
+    color: white;
+    font-family: 'Montserrat', 'Arial', sans-serif;
     text-align: center;
 }
 
@@ -30,13 +49,15 @@ body {
     display: block;
     padding: 15px;
     color: dodgerblue;
-    font-family: 'Josefin Sans', 'Arial', sans-serif;
+    font-family: 'Montserrat', 'Arial', sans-serif;
     font-size: 20px;
     width: 400px;
     height: 30px;
     border-radius: 10px;
     border: none;
     box-shadow: 0 10px 30px -10px gray;
+    animation-name: slidein;
+    animation-duration: 0.3s;
 }
 
 .city-input:focus {

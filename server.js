@@ -27,8 +27,6 @@ app.get("/:lat/:lon", (req, res) => {
       .catch(err => res.json({error: "Error!"}));
 });
 
-app.get("/", (req, res) => res.send("Hello!\u26A1"));
-
 app.listen(3000, () =>
   console.log("\uD83D\uDE80" + "Server started on port 3000")
 );

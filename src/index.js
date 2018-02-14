@@ -50,7 +50,7 @@ class WeatherPage extends React.Component {
     render() {
         console.log(this.state);
         return <div className="container">
-            <h1>Weather</h1>
+            <h1>Weather Viewer</h1>
             <form onSubmit={this.getWeather}>
                <input className="city-input" type="text" placeholder="Enter your city" onChange={this.handleCity}/>
             </form>
@@ -60,6 +60,6 @@ class WeatherPage extends React.Component {
 }
 
 ReactDOM.render(
-    < WeatherPage />,
+    <WeatherPage />,
     document.getElementById("root")
 );

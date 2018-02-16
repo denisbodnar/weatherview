@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import "./style.css";
 
+const API = 'http://127.0.0.1:3000/';
+
 const conditions = {
   Thunderstorm: "🌩️",
   Drizzle: "🌧️",
@@ -14,76 +16,63 @@ const conditions = {
   Extreme: "🌪️"
 };
 
+const WeatherCard = props => {
+  return (
+    <div className="daily">
+      <p>{props.header}</p>
+      <h2>{props.main}</h2>
+      <p>{props.description}</p>
+    </div>
+  );
+}
+
 class WeatherPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data: null,
-            city: null,
-            error: null,
-            lat: null,
-            long: null
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+      city: null,
+      error: false,
     }
+  }
 
-    componentWillMount() {
-        // navigator.geolocation.getCurrentPosition(pos =>
-        //   this.setState({
-        //     lat: Math.floor(pos.coords.latitude),
-        //     long: Math.floor(pos.coords.longitude)
-        //   })
-        // );
-    }
+  getWeather = e => {
+      e.preventDefault();
+      axios
+        .get(`${API}${this.state.city}`)
+        .then(res => !!res && this.setState({ data: res.data, error: res.data.error }))
+        .catch(err => this.setState({ error: true }));
+  }
 
-    getWeather = e => {
-        e.preventDefault();
-        axios
-          .get(`http://127.0.0.1:3000/${this.state.city}`)
-          .then(res => !!res.data && this.setState({data: res.data, error: res.data.error}))
-    }
+  handleCity = e => {
+      this.setState({city: e.target.value})
+  }
 
-    handleCity = e => {
-        this.setState({city: e.target.value})
-    }
-
-    render() {
-        console.log(this.state);
-        return <div className="container">
-            <h1>Weather Viewer </h1>
-            <form onSubmit={this.getWeather}>
-              <input className="city-input" type="text" placeholder="City" onChange={this.handleCity} />
-            </form>
-            {(!this.state.error && this.state.data && this.state.data.map(
-                entry => (
-                  <div className="daily" key={entry.date}>
-                    <div>
-                      <p>{entry.dateText.split(" ")[0]}</p>
-                    </div>
-                    <div>
-                      <p>{entry.dateText.split(" ")[1]}</p>
-                    </div>
-                    <div>
-                      <h2>
-                        {Math.floor(entry.temp)}{" "}
-                        {conditions[entry.condition]}
-                      </h2>
-                    </div>
-                    <div>
-                      <p>{entry.description}</p>
-                    </div>
-                  </div>
-                )
-              )) || (this.state.error && <div className="daily">
-                <p>{this.state.error.split(" ")[0]}</p>
-                <h2>{this.state.error.split(" ")[1]}</h2>
-                <p>{this.state.error.split(" ")[2]}</p>
-              </div>)}
-          </div>;
-    }
+  render() {
+    return (    
+      <div className="container">
+        <h1>Weather</h1>
+        <form onSubmit={this.getWeather}>
+          <input className="city-input" type="text" placeholder="City" onChange={this.handleCity} />
+        </form>
+        {
+          this.state.error && <WeatherCard header="Oops!" main=" 🤷 " description="Something wrong" /> || 
+          this.state.data && this.state.data.map(
+              entry => (
+                <WeatherCard 
+                  key={entry.date} 
+                  header={entry.dateText} 
+                  main={`${Math.floor(entry.temp)}  ${conditions[entry.condition]}`}
+                  description={entry.description}
+                />
+              )
+            )}
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(
-    <WeatherPage />,
-    document.getElementById("root")
+  <WeatherPage />,
+  document.getElementById("root")
 );

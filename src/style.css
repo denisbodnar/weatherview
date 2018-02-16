@@ -1,24 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Concert+One');
 
-@keyframes slide {
-    from {
-        height: 30px;
-    }
-
-    to {
-        height: 50px;
-    }
-}
-
-@keyframes slidein {
-    from {
-        height: 50px;
-    }
-
-    to {
-        height: 30px;
-    }
+body {
+    background: linear-gradient(180deg, lightblue, white);
+    background-attachment: fixed;
 }
 
 h1 {
@@ -50,11 +35,6 @@ p {
     min-height: 70vh;
 }
 
-body {
-    background: linear-gradient(180deg, lightblue, white);
-    background-attachment: fixed;
-}
-
 .city-input {
     margin: 40px auto;
     display: block;
@@ -67,16 +47,12 @@ body {
     border-radius: 10px;
     border: none;
     box-shadow: 0 10px 30px -10px gray;
-    animation-name: slidein;
-    animation-duration: 0.3s;
 }
 
 .city-input:focus {
     outline: none;
-    animation-name: slide;
-    animation-duration: 0.3s;
     box-shadow: 0 10px 30px 0px gray;
-    height: 50px;
+    height: 30px;
 }
 
 .daily {

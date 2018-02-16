@@ -37,18 +37,19 @@ class WeatherPage extends React.Component {
   }
 
   getWeather = e => {
-      e.preventDefault();
-      axios
-        .get(`${API}${this.state.city}`)
-        .then(res => !!res && this.setState({ data: res.data, error: res.data.error }))
-        .catch(err => this.setState({ error: true }));
+    e.preventDefault();
+    axios
+      .get(`${API}${this.state.city}`)
+      .then(res => !!res && this.setState({ data: res.data.days, error: res.data.error }))
+      .catch(err => this.setState({ error: true }));
   }
 
   handleCity = e => {
-      this.setState({city: e.target.value})
+    this.setState({city: e.target.value})
   }
 
   render() {
+    console.log(this.state);
     return (    
       <div className="container">
         <h1>Weather</h1>
@@ -58,15 +59,16 @@ class WeatherPage extends React.Component {
         {
           this.state.error && <WeatherCard header="Oops!" main=" 🤷 " description="Something wrong" /> || 
           this.state.data && this.state.data.map(
-              entry => (
-                <WeatherCard 
-                  key={entry.date} 
-                  header={entry.dateText} 
-                  main={`${Math.floor(entry.temp)}  ${conditions[entry.condition]}`}
-                  description={entry.description}
-                />
-              )
-            )}
+            entry => (
+              <WeatherCard 
+                key={entry.date} 
+                header={entry.dateText} 
+                main={`${Math.floor(entry.temp)}  ${conditions[entry.condition]}`}
+                description={entry.description}
+              />
+            )
+          )
+        }
       </div>
     );
   }

@@ -11,20 +11,19 @@ app.use(cors());
 app.get("/:city", (req, res) => {
     axios
       .get(`${API}?q=${req.params.city}&units=${units}&appID=${token}`)
-      .then(result => 
-        res.send(
-          result.data.list.map(entry => {
-            return { 
-              date: entry.dt,
-              temp: entry.main.temp,
-              condition: entry.weather[0].main,
-              description: entry.weather[0].description,
-              dateText: entry.dt_txt
-            };
-          })
-        )
+      .then(result => res.send({
+        days: result.data.list.map(entry => {
+          return { 
+            date: entry.dt, 
+            temp: entry.main.temp, 
+            condition: entry.weather[0].main, 
+            description: entry.weather[0].description, 
+            dateText: entry.dt_txt };
+          }), 
+          error: false
+        })
       )
-      .catch(err => res.send({ error: true }));
+      .catch(err => res.send({ days: null, error: true }));
   }
 );
 

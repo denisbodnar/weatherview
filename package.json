@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack -d --watch",
-    "prod": "webpack -p",
+    "start": "webpack -p && node ./client/server.js",
     "serve": "node ./server/server.js"
   },
   "dependencies": {

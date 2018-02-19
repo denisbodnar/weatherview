@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const path = require("path");
 
-const BUILD_DIR = path.resolve(__dirname, "dist");
-const APP_DIR = path.resolve(__dirname, "src");
+const BUILD_DIR = path.resolve(__dirname, "client/dist");
+const APP_DIR = path.resolve(__dirname, "client/src");
 
 module.exports = {
   entry: `${APP_DIR}/index.js`,
@@ -15,7 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: {
           loader: "babel-loader"
         }

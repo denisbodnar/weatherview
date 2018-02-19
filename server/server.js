@@ -19,7 +19,7 @@ app.get("/:city", (req, res) => {
             condition: entry.weather[0].main, 
             description: entry.weather[0].description, 
             dateText: entry.dt_txt };
-          }), 
+          }),
           error: false
         })
       )

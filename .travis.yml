@@ -1,0 +1,12 @@
+language: node_js
+sudo: enabled
+
+before_install:
+- sudo apt-get update -qq
+- sudo apt-get install yarn
+
+before_script:
+- yarn install
+
+script:
+- eslint client/src/**

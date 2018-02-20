@@ -1,11 +1,12 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
+
 const app = express();
-const indexPath = path.resolve("client/dist/index.html");
-const buildPath = path.resolve("client/dist");
+const indexPath = path.resolve('client/dist/index.html');
+const buildPath = path.resolve('client/dist');
 
 app.use(express.static(buildPath));
 
-app.get("*", (req, res) => res.sendFile(indexPath));
+app.get('*', (req, res) => res.sendFile(indexPath));
 
-app.listen(8000, () => console.log("App listening on port " + 8000));
+app.listen(8000);

@@ -9,4 +9,4 @@ app.use(express.static(buildPath));
 
 app.get('*', (req, res) => res.sendFile(indexPath));
 
-app.listen(8000);
+app.listen(8000, () => console.log('Port 8000 listening'));

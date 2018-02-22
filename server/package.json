@@ -1,0 +1,16 @@
+{
+  "name": "weatherview-backend",
+  "version": "1.0.0",
+  "description": "Weather viewer",
+  "main": "server.js",
+  "author": "Denys Bodnar",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  }
+}

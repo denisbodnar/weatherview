@@ -1,21 +1,20 @@
-## This is a simple weather view app
+# VeatherView
 
-Data source - openweathermap.com
+## This is a simple weather viewing app.
+
+Data source - [openweathermap.com](http://openweathermap.com)
 ### Tech used
 - Webpack
 - React
 - ES6
 - NodeJS
 - Express
+- Docker
 
 ### Prerequisites
-You should have NodeJS v8 or higher with yarn installed
+You should have Docker with Docker Compose installed on your machine
 
 ### Instructions
 - clone the repo;
-- run `yarn install`;
-- run `yarn serve` to run server;
-- run `yarn start` to build app;
+- run `docker-compose up`;
 - open `localhost:8000` in your browser
-
-Should you like to run the app in development mode, run `yarn run dev`

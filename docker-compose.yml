@@ -1,8 +1,14 @@
 version: '2'
 services:
-  front:
-    build: .
+  client:
+    build: ./client
     ports: 
       - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
     volumes:
       - .:/usr/src/app

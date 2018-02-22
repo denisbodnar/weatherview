@@ -1,7 +1,7 @@
 const path = require('path');
 
-const BUILD_DIR = path.resolve(__dirname, 'client/dist');
-const APP_DIR = path.resolve(__dirname, 'client/src');
+const BUILD_DIR = path.resolve(__dirname, 'dist');
+const APP_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
   entry: `${APP_DIR}/index.jsx`,
@@ -13,11 +13,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.css$/,

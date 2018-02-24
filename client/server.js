@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const indexPath = path.resolve('client/dist/index.html');
-const buildPath = path.resolve('client/dist');
+const indexPath = path.resolve(__dirname, 'dist/index.html');
+const buildPath = path.resolve(__dirname, 'dist');
 
 app.use(express.static(buildPath));
 

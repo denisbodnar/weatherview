@@ -17,7 +17,5 @@ Data source - [openweathermap.com](http://openweathermap.com)
 
 ### Instructions
 - clone the repo
-- `cd server && npm install`
-- `cd client && npm install`
 - run `docker-compose up`
 - open `localhost:8000` in your browser

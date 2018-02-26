@@ -1,13 +1,12 @@
 const path = require('path');
 
-const BUILD_DIR = path.resolve(__dirname, 'dist');
-const APP_DIR = path.resolve(__dirname, 'src');
+const BUILD_DIR = path.resolve('dist');
+const APP_DIR = path.resolve('src');
 
 module.exports = {
-  entry: `${APP_DIR}/index.jsx`,
+  entry: path.join(APP_DIR, 'index.jsx'),
   output: {
     path: BUILD_DIR,
-    publicPath: '/',
     filename: 'bundle.js',
   },
   module: {

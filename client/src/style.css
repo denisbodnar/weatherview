@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Concert+One');
 
+@keyframes shade {
+    from { box-shadow: 0 10px 30px -10px gray; }
+    to { box-shadow: 0 10px 30px 0px gray; }
+}
+
+@keyframes shadeout {
+    from { box-shadow: 0 10px 30px 0px gray; }
+    to { box-shadow: 0 10px 30px -10px gray; }
+}
+
 body {
     background: linear-gradient(180deg, lightblue, white);
     background-attachment: fixed;
@@ -47,12 +57,16 @@ p {
     border-radius: 10px;
     border: none;
     box-shadow: 0 10px 30px -10px gray;
+    animation-name: shadeout;
+    animation-duration: 0.5s;
 }
 
 .city-input:focus {
     outline: none;
     box-shadow: 0 10px 30px 0px gray;
     height: 30px;
+    animation-name: shade;
+    animation-duration: 0.5s;
 }
 
 .daily {

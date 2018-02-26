@@ -12,10 +12,13 @@ Data source - [openweathermap.com](http://openweathermap.com)
 - Docker
 
 ### Prerequisites
-- Docker with Docker Compose installed on your machine
 - NodeJS v8.9 or higher
 
 ### Instructions
 - clone the repo
-- run `docker-compose up`
-- open `localhost:8000` in your browser
+- `cd server && npm install`
+    - `npm run start` to run server
+- `cd client && npm install`
+    - `run npm run dev` to run development build
+    - `run npm run build` to run production build
+    - open `localhost:8000` in your browser
